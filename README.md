@@ -1,16 +1,20 @@
-### docker-dropbox-sync-hf
+# docker-dropbox-sync-hf
 
-Free Docker instance running on Hugging Face Spaces with built-in Rclone sync to Dropbox. Automate secure, seamless file sync between your container and cloud storage using open infrastructure — no servers or credit cards required.
+Free Docker instance running on Hugging Face Spaces with built-in Rclone sync to Dropbox. Automate secure, seamless file sync between your container and cloud storage using open infrastructure—no servers or credit cards required.
 
-## Installation & Usage
+---
 
-### 1. Get Dropbox API Access
+## 🚀 Installation & Usage
 
-- Go to [Dropbox App Console](https://www.dropbox.com/developers)
+### 1️⃣ Get Dropbox API Access
+
+- Go to the [Dropbox App Console](https://www.dropbox.com/developers)
 - Create a new app with your account
 - Set the required permissions and scope (entire Dropbox if needed)
 
-### 2. Install rclone and Configure Dropbox
+---
+
+### 2️⃣ Install rclone and Configure Dropbox
 
 On any machine with browser access:
 
@@ -22,7 +26,9 @@ rclone config
 - Follow the prompts to create a new remote for Dropbox.
 - Authenticate with Dropbox via your browser as instructed.
 
-### 3. Get Your `rclone.conf` Content
+---
+
+### 3️⃣ Get Your `rclone.conf` Content
 
 - Find the path to your rclone config file:
 
@@ -38,10 +44,17 @@ rclone config
 
 - Copy the entire contents of this file. This is your `RCLONE_CONF_TEXT`.
 
-### 4. useage copy the file of you saas (for example N8N) to huggingface space root dir then set the `RCLONE_CONF_TEXT` to the hf secrets. done
+---
 
-### 5. To avoid the sleep
+### 4️⃣ Usage
 
-use https://console.cron-job.org/ to send the request to the docker to /heath route to aviod the stoping of the conatior after few min set to 10 min cron on it.
+Copy the data directory of your SaaS app (for example, N8N) to the Hugging Face Space root directory, then set the `RCLONE_CONF_TEXT` as a Hugging Face secret. Done!
+
+---
+
+### 5️⃣ Prevent Container Sleep
+
+Use [console.cron-job.org](https://console.cron-job.org/) to send a request to the `/health` route of your Docker container.  
+Set up a cron job to ping every 10 minutes to prevent the container from stopping due to inactivity.
 
 
