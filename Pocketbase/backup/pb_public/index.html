@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketBase - Open Source backend in 1 file</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #cbe7ef;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 0;
+            border-bottom: none;
+            background: transparent;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pb-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #222;
+            text-decoration: none;
+        }
+
+        .pb-logo-icon {
+            background: #fff;
+            border: 2px solid #222;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .pb-logo-icon span {
+            display: block;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .github-icon {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #222;
+        }
+
+        .doc-btn {
+            background: #fff;
+            border: 2px solid #222;
+            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #222;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .doc-btn:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 3rem 2rem 0 2rem;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-top: 2.5rem;
+            color: #222;
+        }
+
+        .main-title strong {
+            display: inline;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+
+        .feature-bar {
+            display: flex;
+            gap: 2rem;
+            background: #fff;
+            color: #222;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 1rem 2rem;
+            margin-top: 2.5rem;
+            font-size: 1.15rem;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .feature-bar span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-bar .check {
+            color: #2ecc40;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 900px) {
+            nav { flex-direction: column; gap: 1rem; }
+            .feature-bar { flex-direction: column; gap: 1rem; }
+        }
+
+        @media (max-width: 600px) {
+            .main-title { font-size: 1.5rem; }
+            .main-title strong { font-size: 2rem; }
+            .feature-bar { font-size: 1rem; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="#" class="pb-logo">
+                    <span class="pb-logo-icon">
+                        <span>PB</span>
+                    </span>
+                    <span>Pocket<strong>Base</strong></span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="https://github.com/pocketbase/pocketbase" class="github-icon" title="GitHub" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                </a>
+                <a id="admin-link" href="#" class="doc-btn">Admin</a>
+                <a href="https://pocketbase.io/docs/" class="doc-btn" target="_blank" rel="noopener">Documentation</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="main-title">
+            Open Source backend <strong>in 1 file</strong>
+        </div>
+        <div class="feature-bar">
+            <span><span class="check">&#10003;</span> Realtime database</span>
+            <span><span class="check">&#10003;</span> Authentication</span>
+            <span><span class="check">&#10003;</span> File storage</span>
+            <span><span class="check">&#10003;</span> Admin dashboard</span>
+        </div>
+        <img src="./dashboard.png" alt="PocketBase Screenshot" style="margin-top:2.5rem;max-width:80%;border-radius:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);" />
+    </main>
+    <script>
+        // Set Admin link to base URL + /_/
+        document.addEventListener('DOMContentLoaded', function() {
+            var base = window.location.origin + '/_/';
+            document.getElementById('admin-link').setAttribute('href', base);
+        });
+    </script>
+</body>
+</html>
