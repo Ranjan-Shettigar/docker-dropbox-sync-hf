@@ -8,7 +8,7 @@ RUN npm install -g n8n && \
     apk add --no-cache rclone redis
 
 # Create data directory and set permissions
-RUN mkdir -p /home/node/.n8n /home/node/.config/rclone && \
+RUN mkdir -p /home/node/.n8n /home/node/.config/rclone /home/node/redis-data && \
     chown -R node:node /home/node
 
 # Copy startup script

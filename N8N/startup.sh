@@ -24,7 +24,7 @@ else
 fi
 
 # Restore Redis data from Dropbox if available
-REDIS_DATA_DIR="/var/lib/redis"
+REDIS_DATA_DIR="/home/node/redis-data"
 mkdir -p "$REDIS_DATA_DIR"
 if rclone ls dropbox:redis-data >/dev/null 2>&1; then
   echo "Restoring Redis data from Dropbox..."
@@ -33,8 +33,8 @@ else
   echo "No backup found on Dropbox for Redis. Skipping restore."
 fi
 
-# Start Redis server in the background
-redis-server --daemonize yes
+# Start Redis server in the background with proper configuration
+redis-server --dir "$REDIS_DATA_DIR" --daemonize yes --stop-writes-on-bgsave-error no
 
 # Schedule backup every 5 minutes in background
 while true; do
