@@ -23,11 +23,26 @@ else
   echo "No backup found on Dropbox. Skipping restore."
 fi
 
+# Restore Redis data from Dropbox if available
+REDIS_DATA_DIR="/var/lib/redis"
+mkdir -p "$REDIS_DATA_DIR"
+if rclone ls dropbox:redis-data >/dev/null 2>&1; then
+  echo "Restoring Redis data from Dropbox..."
+  rclone sync --checksum dropbox:redis-data "$REDIS_DATA_DIR"
+else
+  echo "No backup found on Dropbox for Redis. Skipping restore."
+fi
+
+# Start Redis server in the background
+redis-server --daemonize yes
+
 # Schedule backup every 5 minutes in background
 while true; do
   sleep 300
   echo "Backing up n8n data to Dropbox..."
   rclone sync --checksum /home/node/.n8n dropbox:n8n-data
+  echo "Backing up Redis data to Dropbox..."
+  rclone sync --checksum "$REDIS_DATA_DIR" dropbox:redis-data
 done &
 
 # Start n8n
